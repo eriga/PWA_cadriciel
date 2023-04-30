@@ -76,6 +76,9 @@
                         <p>
                             Chaque modèle doit appartenir au <em>namespace</em> <code>Model</code> et hérité de <code>Base\Model</code>
                         </p>
+                        <p>
+                        Chaque modèle doit préciser sa table associée avec la propriété <code>protected $table = "nom_table";"</code>
+                        </p>
                     </div>
                 </li>
             </ul>

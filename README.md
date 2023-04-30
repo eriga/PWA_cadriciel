@@ -14,3 +14,4 @@
 ### 4
 - Ajoutez les modèles nécessaires au projet dans le dossier `/models`.
 - Chaque modèle doit appartenir au *namespace* `Model` et hérité de `Base\Model`
+- Chaque modèle doit préciser sa table associée avec la propriété `protected $table = "nom_table";"`
