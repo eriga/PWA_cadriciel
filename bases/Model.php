@@ -37,11 +37,7 @@ class Model
         return self::$pdo;
     }
 
-    /**
-     * Retourne toutes les entrées du modèle
-     *
-     * @return array|false
-     */
+
     public function tout() {
         $sql = "SELECT *
                 FROM $this->table";
@@ -53,12 +49,7 @@ class Model
         return $requete->fetchAll();
     }
 
-    /**
-     * Retourne une entrée spécifique selon un id
-     *
-     * @param integer $id
-     * @return object|false
-     */
+
     public function parId(int $id){
         $sql = "SELECT *
                 FROM $this->table
@@ -66,9 +57,7 @@ class Model
         
         $requete = $this->pdo()->prepare($sql);
 
-        $requete->execute([
-            ":id" => $id,
-        ]);
+        $requete->execute([":id" => $id]);
 
         return $requete->fetch();        
     }
