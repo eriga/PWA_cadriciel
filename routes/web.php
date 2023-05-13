@@ -2,5 +2,5 @@
 
 $routes = [
     // route => [controller, méthode]
-    "index" => ["DefautController", "index"]
+    "index" => ["DefautController", "index"],
 ];
