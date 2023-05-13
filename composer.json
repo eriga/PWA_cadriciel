@@ -3,7 +3,8 @@
         "psr-4": {
             "Base\\": "bases/",
             "Controller\\": "controllers/",
-            "Model\\": "models/"
+            "Model\\": "models/",
+            "Util\\": "utils/"
         }
     }
 }
