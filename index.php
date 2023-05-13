@@ -2,6 +2,9 @@
 // Autoloading
 require ("vendor/autoload.php");
 
+// Démarrage de la session
+session_start();
+    
 // Récupération de la route demandée
 $path = $_GET["path"] ?? "index";
 $path = trim($path, "/");
@@ -26,3 +29,6 @@ $controller = new $controller;
 
 // Appel dynamique de la méthode associée
 $controller->$methode();
+
+
+
