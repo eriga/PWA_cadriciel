@@ -9,7 +9,9 @@ class Controller {
      * @return void
      */
     public function erreur404() {
-        include("views/erreurs/404.view.php");
+        $this->vue("erreurs/404", [
+            "titre" => "Page introuvable"
+        ]);
     }
 
     /**
@@ -31,9 +33,7 @@ class Controller {
      * @return void
      */
     protected function vue($chemin, $donnees = []){
-
         extract($donnees);
-
         include("views/$chemin.view.php");
     }
 }
