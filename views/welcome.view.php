@@ -32,7 +32,7 @@
                     <div>
                         <p class="nombre">1</p>
                         <p>
-                            Effacez la vue <code>views/index.view.php</code>
+                            Effacez la vue <code>views/welcome.view.php</code>
                         </p>
                         <p>
                             Changez les paramètres de connexion à la BDD dans le fichier <code>.env</code>
@@ -63,7 +63,7 @@
                             Effacez le contrôleur <code>DefautController</code>
                         </p>
                         <p>
-                            Chaque controller doit appartenir au <em>namespace</em> <code>Controller</code> et hérité de <code>Base\Controller</code>
+                            Chaque controller doit appartenir au <em>namespace</em> <code>Controllers</code> et hérité de <code>Bases\Controller</code>
                         </p>
                     </div>
                 </li>
@@ -74,7 +74,7 @@
                             Ajoutez les modèles nécessaires au projet.
                         </p>
                         <p>
-                            Chaque modèle doit appartenir au <em>namespace</em> <code>Model</code> et hérité de <code>Base\Model</code>
+                            Chaque modèle doit appartenir au <em>namespace</em> <code>Models</code> et hérité de <code>Bases\Model</code>
                         </p>
                         <p>
                         Chaque modèle doit préciser sa table associée avec la propriété <code>protected $table = "nom_table";</code>

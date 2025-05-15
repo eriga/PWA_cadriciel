@@ -79,4 +79,76 @@ class Model
 
         return $requete->fetch();
     }
+
+    /**
+     * Insère une nouvelle entrée
+     *
+     * @param array $cols   Noms des colonnes de la table
+     * @param array $vals   Valeurs à insérer
+     * 
+     * @return bool
+     */
+    public function insert($cols, $vals) {
+        $colonnes = implode(",", $cols);
+        $placeholders = ":" . implode(",:", $cols);
+
+        $sql = "INSERT INTO $this->table ($colonnes)
+                VALUES ($placeholders)";
+
+        $requete = $this->bdd()->prepare($sql);
+
+        $params = array_combine($cols, $vals);
+
+        return $requete->execute($params);
+    }
+
+    /** 
+     * Modifier une entrée existante
+     *
+     * @param integer $id   Id de l'entrée à modifier
+     * @param array $cols   Noms des colonnes de la table
+     * @param array $vals   Valeurs à insérer
+     * 
+     * @return bool
+     */
+    public function update($id, $cols, $vals) {
+        
+        $sets = "";
+
+        foreach($cols as $index => $col){
+            $sets .= $col . "=:" . $col;
+
+            if($index != count($cols) - 1){
+                $sets .= ",";
+            }
+        }
+        
+        $sql = "UPDATE $this->table 
+                SET $sets
+                WHERE id = :id";
+
+        $requete = $this->bdd()->prepare($sql);
+
+        $params = array_combine($cols, $vals);
+        $params = array_merge($params, [":id" => $id]);
+
+        return $requete->execute($params);
+    }
+
+    /**
+     * Supprime une entrée spécifique dans le modèle
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function destroy($id){
+        $sql = "DELETE FROM $this->table
+                WHERE id = :id";
+
+        $requete = $this->bdd()->prepare($sql);
+
+        return $requete->execute([
+            ":id" => $id
+        ]);
+    }
 }
