@@ -17,12 +17,7 @@ class Model
     protected function bdd()
     {
         if(self::$bdd == null){
-            $env = parse_ini_file(".env");            
-
-            $hote = $env["HOST"];
-            $username = $env["USERNAME"];
-            $password = $env["PASSWORD"];
-            $nom_bdd = $env["DB_NAME"];
+            require("config/db.php");
 
             // Options de connexion
             $options = [
