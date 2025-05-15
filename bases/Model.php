@@ -2,9 +2,11 @@
 
 namespace Bases;
 
+use PDO;
+
 class Model
 {
-    private static $pdo = null;
+    private static $bdd = null;
     protected $table = null;
 
     /**
@@ -12,9 +14,9 @@ class Model
      *
      * @return PDO
      */
-    protected function pdo()
+    protected function bdd()
     {
-        if(self::$pdo == null){
+        if(self::$bdd == null){
             $env = parse_ini_file(".env");            
 
             $hote = $env["HOST"];
@@ -24,13 +26,13 @@ class Model
 
             // Options de connexion
             $options = [
-                \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4'",
-                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-                \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4'",
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
             ];
 
             // Connexion
-            self::$pdo = new \PDO(
+            self::$bdd = new PDO(
                 "mysql:host=$hote;dbname=$nom_bdd", 
                 $username, 
                 $password,
@@ -38,7 +40,7 @@ class Model
             );
         }
 
-        return self::$pdo;
+        return self::$bdd;
     }
 
     /**
@@ -46,11 +48,11 @@ class Model
      *
      * @return array|false
      */
-    public function tout() {
+    public function all() {
         $sql = "SELECT *
                 FROM $this->table";
 
-        $requete = self::pdo()->prepare($sql);
+        $requete = $this->bdd()->prepare($sql);
 
         $requete->execute();
 
@@ -63,13 +65,13 @@ class Model
      * @param integer $id L'id ciblé
      * @return object|false
      */
-    public function parId(int $id) : object|false
+    public function find($id)
     {
         $sql = "SELECT *
                 FROM $this->table
                 WHERE id = :id";
 
-        $requete = self::pdo()->prepare($sql);
+        $requete = $this->bdd()->prepare($sql);
 
         $requete->execute([
             ":id" => $id
