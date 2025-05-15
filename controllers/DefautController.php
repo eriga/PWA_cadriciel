@@ -13,6 +13,6 @@ class DefautController extends Controller {
      * Affiche la page d'accueil temporaire
      */
     public function index() {
-        $this->vue("index");
+        $this->view("welcome");
     }
 }
