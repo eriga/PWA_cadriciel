@@ -1,0 +1,2 @@
+# Pour assurer que le dossier /models soit présent sur le dépôt Github
+!.gitignore
