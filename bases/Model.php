@@ -28,7 +28,7 @@ class Model
 
             // Connexion
             self::$bdd = new PDO(
-                "mysql:host=$hote;dbname=$nom_bdd", 
+                "mysql:host=$host;dbname=$dbname", 
                 $username, 
                 $password,
                 $options
